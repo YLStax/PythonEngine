@@ -33,6 +33,11 @@ namespace PythonEngine
             python.BeginErrorReadLine();
         }
 
+        public void UseJsonFunc()
+        {
+            Import("json");
+        }
+
         public void FromImport(string from, string import, string asName = null)
         {
             var asText = (asName ?? "") != "" ? $" as {asName}" : "";
@@ -48,8 +53,7 @@ namespace PythonEngine
         public void WriteLineObjectToJson(string format, params object[] args)
         {
             var jsons = args.Select(n => JsonConvert.SerializeObject(n)).ToArray();
-            var input = string.Format(format, jsons);
-            WriteLine(input);
+            WriteLine(format, jsons);
         }
 
         public T DeserializeObjectFromJson<T>(string objectName)

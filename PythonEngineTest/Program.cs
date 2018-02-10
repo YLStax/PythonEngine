@@ -10,12 +10,14 @@ namespace PythonEngineTest
         {
             using (var python = new PyEngine(@"test\Scripts\python.exe"))
             {
-                python.Import("json");
-                python.Import("numpy", "np");
+                python.UseJsonFunc();
+                python.FromImport("time", "sleep");
                 python.Import("test", "ts");
+                python.Import("numpy", "np");
 
                 python.WriteLine("print('Hello')");
                 Console.WriteLine(python.ReadLine());
+                python.WriteLine("sleep(3)");
                 python.WriteLine("t=ts.test('World')");
                 python.WriteLine("print(t)");
                 Console.WriteLine(python.ReadLine());
@@ -29,10 +31,10 @@ namespace PythonEngineTest
                     Console.WriteLine(n);
                 }
 
-                var list = new int[] { 1, 2, 3 };
+                var list = new int[,] { { 1, 2 }, { 3, 4 } };
                 python.WriteLineObjectToJson("b=np.array({0})", list);
                 python.WriteLine("b=2*b");
-                var b = python.DeserializeObjectFromJson<int[]>("b.tolist()");
+                var b = python.DeserializeObjectFromJson<int[,]>("b.tolist()");
                 foreach (var n in b)
                 {
                     Console.WriteLine(n);
