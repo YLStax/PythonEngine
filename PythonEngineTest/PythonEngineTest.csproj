@@ -6,12 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="test\**" />
-    <EmbeddedResource Remove="test\**" />
-    <None Remove="test\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PythonEngine\PythonEngine.csproj" />
   </ItemGroup>
 
