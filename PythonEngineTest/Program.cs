@@ -8,14 +8,16 @@ namespace PythonEngineTest
     {
         static void Main(string[] args)
         {
-            using (var python = new PyEngine(@"C:\ProgramData\Anaconda3\python.exe"))
+            using (var python = new PyEngine(@"test\Scripts\python.exe"))
             {
                 python.UseJsonFunc();
-                python.Import("numpy", "np");
+                python.FromImport("time", "sleep");
                 python.Import("test", "ts");
+                python.Import("numpy", "np");
 
                 python.WriteLine("print('Hello')");
                 Console.WriteLine(python.ReadLine());
+                python.WriteLine("sleep(3)");
                 python.WriteLine("t=ts.test('World')");
                 python.WriteLine("print(t)");
                 Console.WriteLine(python.ReadLine());
