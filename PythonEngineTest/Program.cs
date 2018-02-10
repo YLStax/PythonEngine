@@ -10,7 +10,7 @@ namespace PythonEngineTest
         {
             using (var python = new PyEngine(@"C:\ProgramData\Anaconda3\python.exe"))
             {
-                python.Import("json");
+                python.UseJsonFunc();
                 python.Import("numpy", "np");
                 python.Import("test", "ts");
 
@@ -29,10 +29,10 @@ namespace PythonEngineTest
                     Console.WriteLine(n);
                 }
 
-                var list = new int[] { 1, 2, 3 };
+                var list = new int[,] { { 1, 2 }, { 3, 4 } };
                 python.WriteLineObjectToJson("b=np.array({0})", list);
                 python.WriteLine("b=2*b");
-                var b = python.DeserializeObjectFromJson<int[]>("b.tolist()");
+                var b = python.DeserializeObjectFromJson<int[,]>("b.tolist()");
                 foreach (var n in b)
                 {
                     Console.WriteLine(n);

@@ -1,4 +1,3 @@
 ﻿
 def test(text):
-    test = text + "_test"
-    return test
+    return text + "_test"

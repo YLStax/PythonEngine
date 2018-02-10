@@ -45,6 +45,11 @@ namespace PythonEngine
             WriteLine($"import {import}{asText}");
         }
 
+        public void UseJsonFunc()
+        {
+            Import("json");
+        }
+
         public void WriteLineObjectToJson(string format, params object[] args)
         {
             var jsons = args.Select(n => JsonConvert.SerializeObject(n)).ToArray();
