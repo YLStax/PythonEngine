@@ -8,7 +8,7 @@ namespace PythonEngineTest
     {
         static void Main(string[] args)
         {
-            using (var python = new PyEngine(@"C:\ProgramData\Anaconda3\python.exe"))
+            using (var python = new PyEngine(@"test\Scripts\python.exe"))
             {
                 python.Import("json");
                 python.Import("numpy", "np");
